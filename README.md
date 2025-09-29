@@ -7,6 +7,44 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)
 ![Testing](https://img.shields.io/badge/Testing-Jest%20%26%20Jasmine-green?style=flat&logo=jest)
 
+## 🚀 Live Preview
+
+You can test the application here: [Live Demo](https://todo-challenge-9e446.web.app/)
+
+### Create a New User
+
+Create a new user by sending a `POST` request to the API endpoint.
+
+**Endpoint:**
+```
+POST https://us-central1-todo-challenge-9e446.cloudfunctions.net/api/users
+```
+
+**Request Headers:**
+```
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+  "email": "test@gmail.com"
+}
+```
+
+**Example Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "RRQl2Mvs7o5KLsfQ0rNJ",
+    "email": "test@gmail.com",
+    "createdAt": "2025-09-29T17:00:00Z"
+  },
+  "message": "User created successfully"
+}
+```
+
 ## 🌟 Main Features
 
 - **🔐 Simple authentication** - Login with email without password
