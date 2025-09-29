@@ -1,0 +1,55 @@
+  <div class="login-container">
+      <mat-card class="login-card">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+          <mat-card-subtitle>Put your email to continue</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input 
+                matInput 
+                type="email" 
+                formControlName="email"
+                placeholder="tu-email@ejemplo.com"
+                [disabled]="authPresenter.isLoading()"
+              >
+              @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+                <mat-error>
+                  @if (loginForm.get('email')?.hasError('required')) {
+                    The email is required
+                  } @else if (loginForm.get('email')?.hasError('email')) {
+                    Enter a valid email
+                  }
+                </mat-error>
+              }
+            </mat-form-field>
+
+            @if (authPresenter.error()) {
+              <div class="error-message">
+                {{ authPresenter.error() }}
+              </div>
+            }
+
+            <div class="actions">
+              <button 
+                mat-raised-button 
+                color="primary" 
+                type="submit"
+                [disabled]="loginForm.invalid || authPresenter.isLoading()"
+                class="login-button"
+              >
+                @if (authPresenter.isLoading()) {
+                  <mat-spinner diameter="20"></mat-spinner>
+                  <span class="loading-text">Verifying...</span>
+                } @else {
+                  Continue
+                }
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>

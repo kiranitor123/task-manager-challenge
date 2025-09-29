@@ -1,0 +1,23 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <h3>Title: {{ task.title }}</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <mat-checkbox [checked]="task.isCompleted" (change)="toggle.emit(task.id)">
+        {{ task.isCompleted ? 'Completed' : 'Pending' }}
+      </mat-checkbox>
+      <small>Description: {{ task.description }}</small>
+      <small>Created At: {{ formatDate(task.createdAt) }}</small>
+      <small>Updated At: {{ task.updatedAt ? formatDate(task.updatedAt) : 'N/A' }}</small>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button (click)="edit.emit(task)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="delete.emit(task.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

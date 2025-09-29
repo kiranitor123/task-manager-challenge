@@ -1,0 +1,94 @@
+<div class="task-list-container">
+  <mat-toolbar color="primary" class="header-toolbar">
+    <span>My Tasks - {{ authPresenter.currentUser()?.email }}</span>
+    <span class="spacer"></span>
+
+    <!-- Filter Chips -->
+    <div class="filter-chips">
+      <mat-chip-set>
+        <mat-chip (click)="taskPresenter.setFilter('all')">
+          All ({{ taskPresenter.taskStats().total }})
+        </mat-chip>
+        <mat-chip (click)="taskPresenter.setFilter('pending')">
+          Pending ({{ taskPresenter.taskStats().pending }})
+        </mat-chip>
+        <mat-chip (click)="taskPresenter.setFilter('completed')">
+          Completed ({{ taskPresenter.taskStats().completed }})
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <button mat-icon-button (click)="openTaskForm()" matTooltip="Add new Task">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button (click)="logout()" matTooltip="Log Out">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="content">
+    @if (taskPresenter.isLoading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading tasks...</p>
+    </div>
+    } @else {
+    <!-- Stats Summary -->
+    <div class="tasks-summary">
+      <mat-card class="summary-card">
+        <mat-card-content>
+          <div class="summary-stats">
+            <div class="stat">
+              <span class="stat-number">{{ taskPresenter.taskStats().total }}</span>
+              <span class="stat-label">Total</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">{{ taskPresenter.taskStats().pending }}</span>
+              <span class="stat-label">Pending</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">{{ taskPresenter.taskStats().completed }}</span>
+              <span class="stat-label">Completed</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    @if (taskPresenter.sortedTasks().length === 0) {
+    <div class="empty-state">
+      <mat-card class="empty-card">
+        <mat-card-content>
+          <mat-icon class="empty-icon">task_alt</mat-icon>
+          <h3>
+            @if (taskPresenter.currentFilter() === 'all') { You have no tasks yet } @else if
+            (taskPresenter.currentFilter() === 'pending') { You have no pending tasks } @else { You
+            have no completed tasks }
+          </h3>
+          <p>
+            @if (taskPresenter.currentFilter() === 'all') { Start by adding your first task! } @else
+            { Filter by "All" to see all your tasks }
+          </p>
+          @if (taskPresenter.currentFilter() === 'all') {
+          <button mat-raised-button color="primary" (click)="openTaskForm()">
+            <mat-icon>add</mat-icon>
+            Add Task
+          </button>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+    } @else {
+    <div class="tasks-grid">
+      @for (task of taskPresenter.sortedTasks(); track task.id) {
+      <app-task-item
+        [task]="task"
+        (toggle)="onToggleTask($event)"
+        (edit)="onEditTask($event)"
+        (delete)="onDeleteTask($event)"
+      />
+      }
+    </div>
+    } }
+  </div>
+</div>
