@@ -278,8 +278,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Contact
 - **Email**: rolandoalvarezfaye@gmail.com
-- **LinkedIn**: [My Profile](https://linkedin.com/in/rolandoalvarezfaye)
-- **GitHub**: [My User](https://github.com/kiranitor123)
+- **LinkedIn**: [Rolando](https://www.linkedin.com/in/rolandodiegoalvarezfaye/)
+- **GitHub**: [Kiranitor](https://github.com/kiranitor123)
 
 ---
 
