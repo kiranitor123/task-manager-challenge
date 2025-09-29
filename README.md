@@ -90,7 +90,7 @@ npm run serve
 npm run deploy
 ```
 
-## 📁 Estructura del Proyecto
+## 📁 Project structure
 
 ```
 task-manager-challenge/
@@ -120,7 +120,7 @@ task-manager-challenge/
 └── 📄 README.md                  # This file
 ```
 
-## 💡 Tecnologías y Patterns
+## 💡 Technologies and Patterns
 
 ### Frontend (Clean Architecture)
 - **Angular 20** - Main framework with Standalone Components
