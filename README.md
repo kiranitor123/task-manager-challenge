@@ -11,6 +11,8 @@
 
 You can test the application here: [Live Demo](https://todo-challenge-9e446.web.app/)
 
+### Test Email: test@gmail.com
+
 ### Create a New User
 
 Create a new user by sending a `POST` request to the API endpoint.
